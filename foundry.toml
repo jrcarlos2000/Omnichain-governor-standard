@@ -3,4 +3,10 @@ src = "src"
 out = "out"
 libs = ["lib"]
 
+[rpc_endpoints]
+polygonMumbai = "${MUMBAI_RPC}"
+bscTestnet = "${BSC_RPC}"
+goerli = "${GOERLI_RPC}"
+
+
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
