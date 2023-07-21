@@ -10,3 +10,6 @@
 [submodule "lib/protocol-contracts"]
 	path = lib/protocol-contracts
 	url = https://github.com/zeta-chain/protocol-contracts
+[submodule "lib/v2-periphery"]
+	path = lib/v2-periphery
+	url = https://github.com/uniswap/v2-periphery
