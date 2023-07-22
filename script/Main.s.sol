@@ -120,9 +120,10 @@ contract ScriptPolygon is Script {
             ,
 
         ) = footyDao.proposals(
-                85283018319579966602226776201812495953692339820283482061484998439406192162778
+                14100562332026155472400985844820581632205583693814270926969344819297426193377
             );
         console.logUint(endBlock);
+        console.logUint(endBlock - block.timestamp);
         console.logUint(forVotes);
         console.logUint(againstVotes);
         console.logUint(abstainVotes);
