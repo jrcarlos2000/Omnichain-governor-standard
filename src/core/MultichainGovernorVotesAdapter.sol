@@ -29,7 +29,7 @@ abstract contract MultichainGovernorVotesAdapter is
     IERC20 internal immutable _zetaToken;
     uint256 internal immutable _destChainId;
     IUniswapV2Router02 internal immutable _uniswapV2Router;
-    uint256 public globalGasLimit = 500000;
+    uint256 public globalGasLimit = 300000;
     uint256 public minZetaCrossChainGas = 3 * 10 ** 18;
 
     /**

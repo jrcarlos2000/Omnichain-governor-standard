@@ -32,7 +32,7 @@ abstract contract MultichainGovernorAdapter is ZetaInteractor, ZetaReceiver {
     IERC20 internal immutable _zetaToken;
     uint256 internal immutable _destChainId;
     IUniswapV2Router02 internal immutable _uniswapV2Router;
-    uint256 public globalGasLimit = 500000;
+    uint256 public globalGasLimit = 300000;
     uint256 public minZetaCrossChainGas = 3 * 10 ** 18;
 
     /**
@@ -85,7 +85,7 @@ abstract contract MultichainGovernorAdapter is ZetaInteractor, ZetaReceiver {
             ZetaInterfaces.SendInput({
                 destinationChainId: _destChainId,
                 destinationAddress: interactorsByChainId[_destChainId],
-                destinationGasLimit: minZetaCrossChainGas,
+                destinationGasLimit: globalGasLimit,
                 message: abi.encode(CROSS_CHAIN_CAST_VOTE, msg.sender, args),
                 zetaValueAndGas: crossChainGas,
                 zetaParams: abi.encode("")

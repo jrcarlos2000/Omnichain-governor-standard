@@ -1,0 +1,104 @@
+{
+  "transactions": [
+    {
+      "hash": "0xaeec1b9e10a4b1d279374ac52efda56f2cf178a6a49a04afdab6d7f0e8b23ac8",
+      "transactionType": "CALL",
+      "contractName": "ZetaEth",
+      "contractAddress": "0x0000c304D2934c00Db1d51995b9f6996AffD17c0",
+      "function": "approve(address,uint256):(bool)",
+      "arguments": [
+        "0x66A70844A816066530eeC13B5C17C82d8df991D7",
+        "3000000000000000000"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x0000c304d2934c00db1d51995b9f6996affd17c0",
+        "gas": "0xfd03",
+        "value": "0x0",
+        "data": "0x095ea7b300000000000000000000000066a70844a816066530eec13b5c17c82d8df991d700000000000000000000000000000000000000000000000029a2241af62c0000",
+        "nonce": "0xaf"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    },
+    {
+      "hash": "0xbdbbc97ca464b4bb85a3ff89678f42749e6fb6ac3cd307011e715a8772aeebb1",
+      "transactionType": "CALL",
+      "contractName": "FootyDAOTokenAdapter",
+      "contractAddress": "0x66A70844A816066530eeC13B5C17C82d8df991D7",
+      "function": "delegate(address)",
+      "arguments": [
+        "0xDe3089d40F3491De794fBb1ECA109fAc36F889d0"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x66a70844a816066530eec13b5c17c82d8df991d7",
+        "gas": "0x21b68",
+        "value": "0x0",
+        "data": "0x5c19a95c000000000000000000000000de3089d40f3491de794fbb1eca109fac36f889d0",
+        "nonce": "0xb0"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    },
+    {
+      "hash": "0x433bd6677531065f23984f85db99e5c0e315747d081c6a444ebd3755b55d8dc8",
+      "transactionType": "CALL",
+      "contractName": "ZetaEth",
+      "contractAddress": "0x0000c304D2934c00Db1d51995b9f6996AffD17c0",
+      "function": "approve(address,uint256):(bool)",
+      "arguments": [
+        "0x15a16c761DAc6880cbC25Fdc4fd4e8773C357727",
+        "3000000000000000000"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x0000c304d2934c00db1d51995b9f6996affd17c0",
+        "gas": "0xfd03",
+        "value": "0x0",
+        "data": "0x095ea7b300000000000000000000000015a16c761dac6880cbc25fdc4fd4e8773c35772700000000000000000000000000000000000000000000000029a2241af62c0000",
+        "nonce": "0xb1"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    },
+    {
+      "hash": "0x586cea18f36eddda7fa55adaef85629d8dba2714f366e5b81bde4def775c374e",
+      "transactionType": "CALL",
+      "contractName": "FootyDAOGovernorAdapter",
+      "contractAddress": "0x15a16c761DAc6880cbC25Fdc4fd4e8773C357727",
+      "function": "castVote(uint256,uint8)",
+      "arguments": [
+        "46924481043954868958654816578658960834202581031569993339399701011822287562369",
+        "1"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x15a16c761dac6880cbc25fdc4fd4e8773c357727",
+        "gas": "0x21e92",
+        "value": "0x0",
+        "data": "0x5678138867be50a90f7eb492fa11c9267917daa4b52fa39828c7f02a9142475e6688a6810000000000000000000000000000000000000000000000000000000000000001",
+        "nonce": "0xb2"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [
+    "0xaeec1b9e10a4b1d279374ac52efda56f2cf178a6a49a04afdab6d7f0e8b23ac8",
+    "0xbdbbc97ca464b4bb85a3ff89678f42749e6fb6ac3cd307011e715a8772aeebb1",
+    "0x433bd6677531065f23984f85db99e5c0e315747d081c6a444ebd3755b55d8dc8",
+    "0x586cea18f36eddda7fa55adaef85629d8dba2714f366e5b81bde4def775c374e"
+  ],
+  "returns": {},
+  "timestamp": 1690039295,
+  "chain": 5,
+  "multi": false,
+  "commit": "11626f6"
+}

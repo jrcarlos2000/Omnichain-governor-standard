@@ -1,0 +1,59 @@
+{
+  "transactions": [
+    {
+      "hash": "0x433f9d732ec612840064a2fc9b4e9aa615f58fce65a7aaeb232a32045bdd9a1c",
+      "transactionType": "CALL",
+      "contractName": "FootyDAOToken",
+      "contractAddress": "0xeA44410fe60B26707b15A88619Aa42a7aAF4a4b5",
+      "function": "setInteractorByChainId(uint256,bytes)",
+      "arguments": [
+        "5",
+        "0x42e3adaeef7076595cbfb2a9468118464c091395"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0xea44410fe60b26707b15a88619aa42a7aaf4a4b5",
+        "gas": "0x10cb4",
+        "value": "0x0",
+        "data": "0x4fd3f7d700000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000001442e3adaeef7076595cbfb2a9468118464c091395000000000000000000000000",
+        "nonce": "0x3a9"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    },
+    {
+      "hash": "0x31a240fc1ce49065ef112aa395a6482b5169464e2a8041c9513dd71fda4d778e",
+      "transactionType": "CALL",
+      "contractName": "FootyDAO",
+      "contractAddress": "0x872487058cD5B585550b60C49396f7cf1e1d0C59",
+      "function": "setInteractorByChainId(uint256,bytes)",
+      "arguments": [
+        "5",
+        "0x50889ee374885277d8a888e3562f95566c751483"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x872487058cd5b585550b60c49396f7cf1e1d0c59",
+        "gas": "0x10d86",
+        "value": "0x0",
+        "data": "0x4fd3f7d700000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000001450889ee374885277d8a888e3562f95566c751483000000000000000000000000",
+        "nonce": "0x3aa"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [
+    "0x433f9d732ec612840064a2fc9b4e9aa615f58fce65a7aaeb232a32045bdd9a1c",
+    "0x31a240fc1ce49065ef112aa395a6482b5169464e2a8041c9513dd71fda4d778e"
+  ],
+  "returns": {},
+  "timestamp": 1690036425,
+  "chain": 80001,
+  "multi": false,
+  "commit": "11626f6"
+}
