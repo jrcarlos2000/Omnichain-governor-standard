@@ -1,7 +1,9 @@
 [profile.default]
+optimizer = true
 src = "src"
 out = "out"
 libs = ["lib"]
+fs_permissions = [{ access = "read-write", path = "./"}]
 
 [rpc_endpoints]
 polygonMumbai = "${MUMBAI_RPC}"

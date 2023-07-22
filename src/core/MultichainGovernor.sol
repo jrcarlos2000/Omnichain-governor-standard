@@ -8,10 +8,13 @@ import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFractio
 import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
 import "@zetachain/protocol-contracts/contracts/evm/interfaces/ZetaInterfaces.sol";
 import "@zetachain/protocol-contracts/contracts/evm/tools/ZetaInteractor.sol";
-import {Functions, FunctionsClient} from "../dev/functions/FunctionsClient.sol";
-// import "@chainlink/contracts/src/v0.8/dev/functions/FunctionsClient.sol"; // Once published
-import {ConfirmedOwner} from "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
+
+interface IMultichainGovernorFunctionsConsumer {
+    function postProposalState(
+        uint256 proposalId,
+        string memory proposalState
+    ) external;
+}
 
 abstract contract MultichainGovernor is
     Governor,
@@ -20,61 +23,33 @@ abstract contract MultichainGovernor is
     GovernorVotesQuorumFraction,
     GovernorTimelockControl,
     ZetaInteractor,
-    ZetaReceiver,
-    FunctionsClient
+    ZetaReceiver
 {
-    // ---- CHAINLINK ----
-    using Functions for Functions.Request;
+    bytes32 internal constant CROSS_CHAIN_CAST_VOTE =
+        keccak256("CROSS_CHAIN_CAST_VOTE");
 
-    string postProposalStateSrc;
-    uint64 subscriptionId;
-
-    bytes32 public latestRequestId;
-    bytes public latestResponse;
-    bytes public latestError;
-
-    event OCRResponse(bytes32 indexed requestId, bytes result, bytes err);
-
-    // ---- --------- ----
+    IMultichainGovernorFunctionsConsumer public functionsConsumer;
 
     constructor(
         IVotes _token,
         TimelockController _timelock,
         address connectorAddress,
         address zetaTokenAddress,
-        address uniswapV2Router,
-        address oracleAddress
+        address uniswapV2Router
     )
         Governor("MyGovernor")
         GovernorVotes(_token)
         GovernorVotesQuorumFraction(4)
         GovernorTimelockControl(_timelock)
         ZetaInteractor(connectorAddress)
-        FunctionsClient(oracleAddress)
     {}
 
-    // ---- CHAINLINK ----
-    function executeRequest(
-        string calldata source,
-        bytes calldata secrets,
-        string[] calldata args,
-        uint64 subscriptionId,
-        uint32 gasLimit
-    ) public onlyOwner returns (bytes32) {
-        Functions.Request memory req;
-        req.initializeRequest(
-            Functions.Location.Inline,
-            Functions.CodeLanguage.JavaScript,
-            source
+    function setFunctionsConsumer(
+        address _functionsConsumer
+    ) external onlyOwner {
+        functionsConsumer = IMultichainGovernorFunctionsConsumer(
+            _functionsConsumer
         );
-        if (secrets.length > 0) {
-            req.addRemoteSecrets(secrets);
-        }
-        if (args.length > 0) req.addArgs(args);
-
-        bytes32 assignedReqID = sendRequest(req, subscriptionId, gasLimit);
-        latestRequestId = assignedReqID;
-        return assignedReqID;
     }
 
     // ---- --------- ----
@@ -106,36 +81,36 @@ abstract contract MultichainGovernor is
             calldatas,
             description
         );
-        _postProposalState(proposalId, "EXISTING");
+        functionsConsumer.postProposalState(proposalId, "EXISTING");
         return proposalId;
     }
 
-    function setPostProposalStateSrc(string memory source) public onlyOwner {
-        postProposalStateSrc = source;
-    }
-
-    function setSubscriptionId(uint64 id) public onlyOwner {
-        subscriptionId = id;
-    }
-
-    function _postProposalState(
-        uint256 _proposalId,
-        string memory _proposalState
-    ) internal returns (bytes32) {
-        Functions.Request memory req;
-        req.initializeRequest(
-            Functions.Location.Inline,
-            Functions.CodeLanguage.JavaScript,
-            postProposalStateSrc
+    function onZetaMessage(
+        ZetaInterfaces.ZetaMessage calldata zetaMessage
+    ) external override isValidMessageCall(zetaMessage) {
+        (bytes32 messageType, address sender, bytes memory args) = abi.decode(
+            zetaMessage.message,
+            (bytes32, address, bytes)
         );
-        string[] memory args = new string[](2);
-        args[0] = Strings.toString(_proposalId);
-        args[1] = _proposalState;
-        req.addArgs(args);
-        bytes32 assignedReqID = sendRequest(req, subscriptionId, 300000);
-        latestRequestId = assignedReqID;
-        return latestRequestId;
+        if (messageType == CROSS_CHAIN_CAST_VOTE) {
+            _onCrossChainCastVote(sender, args);
+        }
     }
+
+    function _onCrossChainCastVote(
+        address account,
+        bytes memory args
+    ) internal {
+        (uint256 proposalId, uint8 support) = abi.decode(
+            args,
+            (uint256, uint8)
+        );
+        _castVote(proposalId, account, support, "DEFAULT");
+    }
+
+    function onZetaRevert(
+        ZetaInterfaces.ZetaRevert calldata zetaRevert
+    ) external override isValidRevertCall(zetaRevert) {}
 
     function cancel(
         address[] memory targets,
