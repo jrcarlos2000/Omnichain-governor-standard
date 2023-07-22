@@ -1,0 +1,36 @@
+{
+  "transactions": [
+    {
+      "hash": "0xc8bff9a30185a6c66f99fba97e872b4bf83ea971e8cf00aff2f7a935843f0e74",
+      "transactionType": "CALL",
+      "contractName": "FootyDAOToken",
+      "contractAddress": "0x14ebD3C782aa93db2f4dBfb5B4E40831bca511d0",
+      "function": "setInteractorByChainId(uint256,bytes)",
+      "arguments": [
+        "5",
+        "0xbe1ba58aaf83b7db6d6320b8c87b4ddd991cd8c6"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x14ebd3c782aa93db2f4dbfb5b4e40831bca511d0",
+        "gas": "0x10cb4",
+        "value": "0x0",
+        "data": "0x4fd3f7d7000000000000000000000000000000000000000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000014be1ba58aaf83b7db6d6320b8c87b4ddd991cd8c6000000000000000000000000",
+        "nonce": "0x393"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [
+    "0xc8bff9a30185a6c66f99fba97e872b4bf83ea971e8cf00aff2f7a935843f0e74"
+  ],
+  "returns": {},
+  "timestamp": 1690031025,
+  "chain": 80001,
+  "multi": false,
+  "commit": "2a7742d"
+}

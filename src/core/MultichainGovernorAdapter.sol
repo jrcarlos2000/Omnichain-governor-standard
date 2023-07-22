@@ -32,6 +32,8 @@ abstract contract MultichainGovernorAdapter is ZetaInteractor, ZetaReceiver {
     IERC20 internal immutable _zetaToken;
     uint256 internal immutable _destChainId;
     IUniswapV2Router02 internal immutable _uniswapV2Router;
+    uint256 public globalGasLimit = 500000;
+    uint256 public minZetaCrossChainGas = 3 * 10 ** 18;
 
     /**
      * @param connectorAddress TSS address in this chain
@@ -60,7 +62,7 @@ abstract contract MultichainGovernorAdapter is ZetaInteractor, ZetaReceiver {
         if (!_isValidChainId(_destChainId)) revert InvalidDestinationChainId();
 
         // we define a value needed for gas in ZETA
-        uint256 crossChainGas = 7 * 10 ** 18; // TODO : maybe prepare oracle to pay for gas
+        uint256 crossChainGas = minZetaCrossChainGas; // TODO : maybe prepare oracle to pay for gas
         // user can send ether to pay for the tx fee or can send ZETA directly
         uint256 sentCrossChainGas = 0;
         if (msg.value > 0) {
@@ -83,12 +85,20 @@ abstract contract MultichainGovernorAdapter is ZetaInteractor, ZetaReceiver {
             ZetaInterfaces.SendInput({
                 destinationChainId: _destChainId,
                 destinationAddress: interactorsByChainId[_destChainId],
-                destinationGasLimit: 500000,
+                destinationGasLimit: minZetaCrossChainGas,
                 message: abi.encode(CROSS_CHAIN_CAST_VOTE, msg.sender, args),
                 zetaValueAndGas: crossChainGas,
                 zetaParams: abi.encode("")
             })
         );
+    }
+
+    function setGlobalGasLimit(uint256 gasLimit) external virtual {
+        globalGasLimit = gasLimit;
+    }
+
+    function setMinimumZetaCrossChainGas(uint256 amount) external virtual {
+        minZetaCrossChainGas = amount;
     }
 
     function onZetaMessage(

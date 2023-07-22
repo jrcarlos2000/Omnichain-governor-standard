@@ -30,7 +30,7 @@ abstract contract MultichainGovernorVotesAdapter is
     uint256 internal immutable _destChainId;
     IUniswapV2Router02 internal immutable _uniswapV2Router;
     uint256 public globalGasLimit = 500000;
-    uint256 public minZetaCrossChainGas = 7 * 10 ** 18;
+    uint256 public minZetaCrossChainGas = 3 * 10 ** 18;
 
     /**
      * @param connectorAddress TSS address in this chain

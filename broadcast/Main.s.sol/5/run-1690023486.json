@@ -1,0 +1,58 @@
+{
+  "transactions": [
+    {
+      "hash": "0x5a7f183269dd3ffd7513df43eff3784dd8d05ef0f86dde9f3c4a995688534ab6",
+      "transactionType": "CALL",
+      "contractName": "ZetaEth",
+      "contractAddress": "0x0000c304D2934c00Db1d51995b9f6996AffD17c0",
+      "function": "approve(address,uint256):(bool)",
+      "arguments": [
+        "0x0dA0063089979E3776842d8Bc782D2c7BF05B4C0",
+        "3000000000000000000"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x0000c304d2934c00db1d51995b9f6996affd17c0",
+        "gas": "0xfd03",
+        "value": "0x0",
+        "data": "0x095ea7b30000000000000000000000000da0063089979e3776842d8bc782d2c7bf05b4c000000000000000000000000000000000000000000000000029a2241af62c0000",
+        "nonce": "0x6d"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    },
+    {
+      "hash": "0xfa862d01b507ccb2fedecc208fd08fa42d22ceb4d8112ebbd69d013dacb71899",
+      "transactionType": "CALL",
+      "contractName": "FootyDAOTokenAdapter",
+      "contractAddress": "0x0dA0063089979E3776842d8Bc782D2c7BF05B4C0",
+      "function": "delegate(address)",
+      "arguments": [
+        "0xDe3089d40F3491De794fBb1ECA109fAc36F889d0"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x0da0063089979e3776842d8bc782d2c7bf05b4c0",
+        "gas": "0x21b68",
+        "value": "0x0",
+        "data": "0x5c19a95c000000000000000000000000de3089d40f3491de794fbb1eca109fac36f889d0",
+        "nonce": "0x6e"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [
+    "0x5a7f183269dd3ffd7513df43eff3784dd8d05ef0f86dde9f3c4a995688534ab6",
+    "0xfa862d01b507ccb2fedecc208fd08fa42d22ceb4d8112ebbd69d013dacb71899"
+  ],
+  "returns": {},
+  "timestamp": 1690023486,
+  "chain": 5,
+  "multi": false,
+  "commit": "2a7742d"
+}

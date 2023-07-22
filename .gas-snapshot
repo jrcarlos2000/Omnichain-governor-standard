@@ -1,0 +1,5 @@
+CounterTest:testIncrement() (gas: 28496)
+CounterTest:testSetNumber(uint256) (runs: 256, μ: 27295, ~: 28384)
+SimpleTest:testOnReceive() (gas: 103177)
+SimpleTest:testWithFork() (gas: 165547)
+SimpleTest:testrun() (gas: 84807)

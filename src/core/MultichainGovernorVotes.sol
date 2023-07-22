@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
@@ -34,7 +34,7 @@ abstract contract MultichainGovernorVotes is
 
     function onZetaMessage(
         ZetaInterfaces.ZetaMessage calldata zetaMessage
-    ) external override {
+    ) external override isValidMessageCall(zetaMessage) {
         (bytes32 messageType, address sender, bytes memory args) = abi.decode(
             zetaMessage.message,
             (bytes32, address, bytes)
@@ -83,5 +83,9 @@ abstract contract MultichainGovernorVotes is
      */
     function mint(address to, uint256 amount) public {
         _mint(to, amount);
+    }
+
+    function clock() public view override returns (uint48) {
+        return SafeCast.toUint48(block.timestamp);
     }
 }

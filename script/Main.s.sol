@@ -10,6 +10,7 @@ import "../src/TestContract.sol";
 import "../src/examples/FootyDAOFunctionsConsumer.sol";
 import "@openzeppelin/contracts/governance/TimelockController.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "../src/zeta-examples/CrossChainMessage.sol";
 
 interface IFunctionsBillingRegistry {
     function addConsumer(uint64 subscriptionId, address consumer) external;
@@ -25,9 +26,9 @@ contract ScriptPolygon is Script {
         0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45;
 
     address constant DEPLOYED_FOOTYDAOTOKEN =
-        0x920B6c3ebCAC0Cd219c47d5490cF6558a6322Bb0;
+        0x5F7b0BDeE6f07ce4ea8681509CDc39eA809C7a6d;
     address constant DEPLOYED_FOOTYDAOTOKEN_GOERLI =
-        0x8d48c62d029e082F0376f5Be47A8d8096eE8856b;
+        0x42E3ADaeEF7076595CbFB2a9468118464c091395;
 
     address constant FUNCTIONS_BILLING_REGISTRY =
         0xEe9Bf52E5Ea228404bB54BCFbbDa8c21131b9039;
@@ -93,7 +94,7 @@ contract ScriptPolygon is Script {
         // footyDao.setFunctionsConsumer(address(footyDaoFunctionsConsumer));
         // vm.stopBroadcast();
 
-        // vm.startBroadcast(User1pk);
+        // vm.startBroadcast(pk);
         // ---- TEST PROPOSE ----
         // address[] memory targets = new address[](1);
         // targets[0] = address(testContract);
@@ -102,29 +103,41 @@ contract ScriptPolygon is Script {
         // bytes[] memory calldatas = new bytes[](1);
 
         // calldatas[0] = abi.encodeWithSignature("setValue1(uint256)", 100);
-        // uint256 proposalId = footyDao.propose(
-        //     targets,
-        //     values,
-        //     calldatas,
-        //     "Test Proposal"
-        // );
+        // uint256 proposalId = FootyDAO(
+        //     payable(0x6B227e698028994f00b41375072F8A536f636c9c)
+        // ).propose(targets, values, calldatas, "Test Proposal2");
         // console.log("---------- DONE PROPOSAL ID --------");
         // console.logUint(proposalId);
 
         // ------ DEPLOY FOOTYDAO TOKEN ------
-        footyDaoToken = new FootyDAOToken(
-            ZETA_CHAIN_CONNECTOR,
-            ZETA_TOKEN,
-            UNISWAPV2ROUTER
-        );
-        footyDaoToken.mint(vm.addr(pk), 100 ether);
+        // footyDaoToken = new FootyDAOToken(
+        //     ZETA_CHAIN_CONNECTOR,
+        //     ZETA_TOKEN,
+        //     UNISWAPV2ROUTER
+        // );
+        // footyDaoToken.mint(vm.addr(pk), 100 ether);
 
-        // footyDaoToken = FootyDAOToken(DEPLOYED_FOOTYDAOTOKEN);
+        footyDaoToken = FootyDAOToken(DEPLOYED_FOOTYDAOTOKEN);
         // footyDaoToken.setInteractorByChainId(
         //     5,
-        //     abi.encode(DEPLOYED_FOOTYDAOTOKEN_GOERLI)
+        //     abi.encodePacked(DEPLOYED_FOOTYDAOTOKEN_GOERLI)
         // );
+        console.log(footyDaoToken.getPastVotes(vm.addr(pk), block.number - 1));
         // footyDaoToken.delegate(vm.addr(pk));
+
+        // ----- EXAMPLE -----
+        // CrossChainMessage crossChainMessage = new CrossChainMessage(
+        //     ZETA_CHAIN_CONNECTOR,
+        //     ZETA_TOKEN,
+        //     UNISWAPV2ROUTER
+        // );
+
+        // CrossChainMessage(0xf127fef5EbA2dE47fBfF7011d330Eda4a5376DE5)
+        //     .setInteractorByChainId(
+        //         5,
+        //         abi.encodePacked(0x86695F03264E4676B896cdD590e013815f3493b2)
+        //     );
+
         vm.stopBroadcast();
     }
 }
@@ -137,9 +150,9 @@ contract ScriptGoerli is Script {
         0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D;
 
     address constant DEPLOYED_FOOTYDAOTOKEN =
-        0x8d48c62d029e082F0376f5Be47A8d8096eE8856b;
+        0x42E3ADaeEF7076595CbFB2a9468118464c091395;
     address constant DEPLOYED_FOOTYDAOTOKEN_MUMBAI =
-        0x920B6c3ebCAC0Cd219c47d5490cF6558a6322Bb0;
+        0x5F7b0BDeE6f07ce4ea8681509CDc39eA809C7a6d;
 
     FootyDAOTokenAdapter footyDaoTokenAdapter;
     FootyDAOGovernorAdapter footyDaoGovernorAdapter;
@@ -155,10 +168,10 @@ contract ScriptGoerli is Script {
         // );
         // footyDaoTokenAdapter.setInteractorByChainId(
         //     80001,
-        //     abi.encode(DEPLOYED_FOOTYDAOTOKEN_MUMBAI)
+        //     abi.encodePacked(DEPLOYED_FOOTYDAOTOKEN_MUMBAI)
         // );
         // footyDaoTokenAdapter.setMinimumZetaCrossChainGas(3 ether);
-        // footyDaoTokenAdapter.setGlobalGasLimit(150000);
+        // footyDaoTokenAdapter.setGlobalGasLimit(300000);
 
         footyDaoTokenAdapter = FootyDAOTokenAdapter(DEPLOYED_FOOTYDAOTOKEN);
         IERC20(ZETA_TOKEN).approve(address(footyDaoTokenAdapter), 3 ether);
@@ -176,6 +189,26 @@ contract ScriptGoerli is Script {
         //     80001,
         //     abi.encode(DEPLOYED_FOOTYDAOTOKEN_MUMBAI)
         // );
+
+        // -------- EXAMPLE CONTRACT ---------
+        // CrossChainMessage crossChainMessage = new CrossChainMessage(
+        //     ZETA_CHAIN_CONNECTOR,
+        //     ZETA_TOKEN,
+        //     UNISWAPV2ROUTER
+        // );
+        // crossChainMessage.setInteractorByChainId(
+        //     80001,
+        //     abi.encodePacked(0xf127fef5EbA2dE47fBfF7011d330Eda4a5376DE5)
+        // );
+
+        // console.log(IERC20(ZETA_TOKEN).balanceOf(vm.addr(pk)));
+        // IERC20(ZETA_TOKEN).approve(
+        //     0x86695F03264E4676B896cdD590e013815f3493b2,
+        //     3 ether
+        // );
+        // CrossChainMessage(0x86695F03264E4676B896cdD590e013815f3493b2)
+        //     .sendHelloWorld(80001);
+
         vm.stopBroadcast();
     }
 }
