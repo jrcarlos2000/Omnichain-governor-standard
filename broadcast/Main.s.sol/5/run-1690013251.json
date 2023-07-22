@@ -1,0 +1,58 @@
+{
+  "transactions": [
+    {
+      "hash": "0x441e549837138a14b9d435611f45b6d25fabbcdda386ef1f2ee18fbc169698d8",
+      "transactionType": "CALL",
+      "contractName": "ZetaEth",
+      "contractAddress": "0x0000c304D2934c00Db1d51995b9f6996AffD17c0",
+      "function": "approve(address,uint256):(bool)",
+      "arguments": [
+        "0x37495E08039a96E39787646fb67CED27565919B7",
+        "3000000000000000000"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x0000c304d2934c00db1d51995b9f6996affd17c0",
+        "gas": "0xfd03",
+        "value": "0x0",
+        "data": "0x095ea7b300000000000000000000000037495e08039a96e39787646fb67ced27565919b700000000000000000000000000000000000000000000000029a2241af62c0000",
+        "nonce": "0x53"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    },
+    {
+      "hash": "0xd09ffccdb8de70ac5a90ad30b63fff1f79c08066c2ef0ff7de2a62cb6710849b",
+      "transactionType": "CALL",
+      "contractName": "FootyDAOTokenAdapter",
+      "contractAddress": "0x37495E08039a96E39787646fb67CED27565919B7",
+      "function": "delegate(address)",
+      "arguments": [
+        "0xDe3089d40F3491De794fBb1ECA109fAc36F889d0"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x37495e08039a96e39787646fb67ced27565919b7",
+        "gas": "0x22547",
+        "value": "0x0",
+        "data": "0x5c19a95c000000000000000000000000de3089d40f3491de794fbb1eca109fac36f889d0",
+        "nonce": "0x54"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [
+    "0x441e549837138a14b9d435611f45b6d25fabbcdda386ef1f2ee18fbc169698d8",
+    "0xd09ffccdb8de70ac5a90ad30b63fff1f79c08066c2ef0ff7de2a62cb6710849b"
+  ],
+  "returns": {},
+  "timestamp": 1690013251,
+  "chain": 5,
+  "multi": false,
+  "commit": "06221d4"
+}

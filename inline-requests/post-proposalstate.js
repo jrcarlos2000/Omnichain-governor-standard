@@ -21,8 +21,6 @@ const request = Functions.makeHttpRequest({
 })
 
 // Continuously-compounding interest formula: A = Pe^(rt)
-const totalAmountAfterInterest = principalAmount + secondAmount;
-
 const [response] = await Promise.all([
   request
 ])

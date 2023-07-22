@@ -34,7 +34,7 @@ abstract contract MultichainGovernorVotes is
 
     function onZetaMessage(
         ZetaInterfaces.ZetaMessage calldata zetaMessage
-    ) external override isValidMessageCall(zetaMessage) {
+    ) external override {
         (bytes32 messageType, address sender, bytes memory args) = abi.decode(
             zetaMessage.message,
             (bytes32, address, bytes)
