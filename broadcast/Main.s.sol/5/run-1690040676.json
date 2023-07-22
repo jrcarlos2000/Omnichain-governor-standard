@@ -1,0 +1,59 @@
+{
+  "transactions": [
+    {
+      "hash": "0x07f8cdc812670cb99ef5231984d3f1a45c3bc1c1280796cd4ae21b93b0c45b34",
+      "transactionType": "CALL",
+      "contractName": "ZetaEth",
+      "contractAddress": "0x0000c304D2934c00Db1d51995b9f6996AffD17c0",
+      "function": "approve(address,uint256):(bool)",
+      "arguments": [
+        "0x15a16c761DAc6880cbC25Fdc4fd4e8773C357727",
+        "3000000000000000000"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x0000c304d2934c00db1d51995b9f6996affd17c0",
+        "gas": "0xfd03",
+        "value": "0x0",
+        "data": "0x095ea7b300000000000000000000000015a16c761dac6880cbc25fdc4fd4e8773c35772700000000000000000000000000000000000000000000000029a2241af62c0000",
+        "nonce": "0xb4"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    },
+    {
+      "hash": "0xd416ac6b75120216464b0db6fa131a06790d9eed55c072445ceea6f522e87b07",
+      "transactionType": "CALL",
+      "contractName": "FootyDAOGovernorAdapter",
+      "contractAddress": "0x15a16c761DAc6880cbC25Fdc4fd4e8773C357727",
+      "function": "castVote(uint256,uint8)",
+      "arguments": [
+        "23037408215941512133337087915661033881029976643267781869879813136930311335396",
+        "1"
+      ],
+      "transaction": {
+        "type": "0x00",
+        "from": "0xde3089d40f3491de794fbb1eca109fac36f889d0",
+        "to": "0x15a16c761dac6880cbc25fdc4fd4e8773c357727",
+        "gas": "0x21e92",
+        "value": "0x0",
+        "data": "0x5678138832eeb60281322dcc609676499903a3ee9e89df9e4a0adbc05ee8dc8c37716de40000000000000000000000000000000000000000000000000000000000000001",
+        "nonce": "0xb5"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [
+    "0x07f8cdc812670cb99ef5231984d3f1a45c3bc1c1280796cd4ae21b93b0c45b34",
+    "0xd416ac6b75120216464b0db6fa131a06790d9eed55c072445ceea6f522e87b07"
+  ],
+  "returns": {},
+  "timestamp": 1690040676,
+  "chain": 5,
+  "multi": false,
+  "commit": "edaf0a6"
+}

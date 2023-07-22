@@ -100,7 +100,7 @@ contract ScriptPolygon is Script {
         // footyDaoFunctionsConsumer.transferOwnership(address(footyDao));
         // footyDao.setFunctionsConsumer(address(footyDaoFunctionsConsumer));
 
-        footyDaoToken = FootyDAOToken(DEPLOYED_FOOTYDAOTOKEN);
+        // footyDaoToken = FootyDAOToken(DEPLOYED_FOOTYDAOTOKEN);
 
         // footyDaoToken.setInteractorByChainId(
         //     5,
@@ -113,26 +113,31 @@ contract ScriptPolygon is Script {
             ,
             ,
             ,
-            ,
+            uint256 endBlock,
             uint256 forVotes,
             uint256 againstVotes,
             uint256 abstainVotes,
             ,
 
         ) = footyDao.proposals(
-                46924481043954868958654816578658960834202581031569993339399701011822287562369
+                85283018319579966602226776201812495953692339820283482061484998439406192162778
             );
+        console.logUint(endBlock);
         console.logUint(forVotes);
-        console.logUint(forVotes);
-        console.logUint(forVotes);
+        console.logUint(againstVotes);
+        console.logUint(abstainVotes);
         // footyDao.setInteractorByChainId(
         //     5,
         //     abi.encodePacked(DEPLOYED_FOOTYDAO_GOERLI)
         // );
 
-        console.logUint(
-            footyDaoToken.getPastVotes(vm.addr(pk), block.timestamp - 1)
-        );
+        // console.logAddress(vm.addr(User1pk));
+
+        // console.log(footyDaoToken.balanceOf(vm.addr(User1pk)));
+
+        // console.logUint(
+        //     footyDaoToken.getPastVotes(vm.addr(User1pk), block.timestamp - 1)
+        // );
 
         // // ---- TEST PROPOSE ----
         // address[] memory targets = new address[](1);
@@ -146,7 +151,7 @@ contract ScriptPolygon is Script {
         //     targets,
         //     values,
         //     calldatas,
-        //     "Test Proposal2"
+        //     "Test Proposal7"
         // );
         // console.log("---------- DONE PROPOSAL ID --------");
         // console.logUint(proposalId);
@@ -179,6 +184,8 @@ contract ScriptPolygon is Script {
         //         5,
         //         abi.encodePacked(0x86695F03264E4676B896cdD590e013815f3493b2)
         //     );
+
+        // console.logUint(block.timestamp);
 
         vm.stopBroadcast();
     }
@@ -234,7 +241,7 @@ contract ScriptGoerli is Script {
         footyDaoGovernorAdapter = FootyDAOGovernorAdapter(DEPLOYED_FOOTYDAO);
         IERC20(ZETA_TOKEN).approve(address(footyDaoGovernorAdapter), 3 ether);
         footyDaoGovernorAdapter.castVote(
-            46924481043954868958654816578658960834202581031569993339399701011822287562369,
+            23037408215941512133337087915661033881029976643267781869879813136930311335396,
             1
         );
 
