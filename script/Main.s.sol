@@ -75,6 +75,7 @@ contract ScriptPolygon is Script {
         string memory path = string.concat(root, "/inline-requests/");
         path = string.concat(path, "post-proposalstate.js");
         string memory jsFile = vm.readFile(path);
+        console.logString(jsFile);
         footyDaoFunctionsConsumer.setPostProposalStateSrc(jsFile);
 
         timelock.grantRole(timelock.PROPOSER_ROLE(), address(footyDao));
@@ -133,6 +134,7 @@ contract ScriptGoerli is Script {
         0xD07358F3C935f63A73Ef1Ce1A9F71d09137E86FC;
 
     FootyDAOTokenAdapter footyDaoTokenAdapter;
+    FootyDAOGovernorAdapter footyDaoGovernorAdapter;
 
     function run() public {
         uint256 pk = vm.envUint("DEPLOYER_PRIVATE_KEY");
@@ -147,9 +149,19 @@ contract ScriptGoerli is Script {
         //     80001,
         //     abi.encode(DEPLOYED_FOOTYDAOTOKEN_MUMBAI)
         // );
-        footyDaoTokenAdapter = FootyDAOTokenAdapter(DEPLOYED_FOOTYDAOTOKEN);
-        IERC20(ZETA_TOKEN).approve(address(footyDaoTokenAdapter), 7 ether);
-        footyDaoTokenAdapter.delegate(vm.addr(pk));
+        // footyDaoTokenAdapter = FootyDAOTokenAdapter(DEPLOYED_FOOTYDAOTOKEN);
+        // IERC20(ZETA_TOKEN).approve(address(footyDaoTokenAdapter), 7 ether);
+        // footyDaoTokenAdapter.delegate(vm.addr(pk));
+        footyDaoGovernorAdapter = new FootyDAOGovernorAdapter(
+            ZETA_CHAIN_CONNECTOR,
+            ZETA_TOKEN,
+            80001,
+            UNISWAPV2ROUTER
+        );
+        footyDaoGovernorAdapter.setInteractorByChainId(
+            80001,
+            abi.encode(DEPLOYED_FOOTYDAOTOKEN_MUMBAI)
+        );
         vm.stopBroadcast();
     }
 }

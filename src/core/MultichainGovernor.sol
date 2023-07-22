@@ -81,7 +81,7 @@ abstract contract MultichainGovernor is
             calldatas,
             description
         );
-        functionsConsumer.postProposalState(proposalId, "EXISTING");
+        functionsConsumer.postProposalState(proposalId, "Active");
         return proposalId;
     }
 

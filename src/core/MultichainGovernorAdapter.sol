@@ -18,6 +18,13 @@ abstract contract MultichainGovernorAdapter is ZetaInteractor, ZetaReceiver {
     error InvalidSwapAmount();
     event MultiChainCastVote(address voter, uint8 support, uint256 destChainId);
 
+    enum ProposalState {
+        Pending,
+        Queued,
+        Executed
+    }
+    mapping(uint256 => ProposalState) public proposalState;
+
     uint256 internal constant MAX_DEADLINE = 200;
     bytes32 internal constant CROSS_CHAIN_CAST_VOTE =
         keccak256("CROSS_CHAIN_CAST_VOTE");
@@ -116,5 +123,12 @@ abstract contract MultichainGovernorAdapter is ZetaInteractor, ZetaReceiver {
         emit EthExchangedForZeta(ethAmount, amountOut);
 
         return amountOut;
+    }
+
+    function setProposalState(
+        uint256 _proposalId,
+        ProposalState _state
+    ) external {
+        proposalState[_proposalId] = _state;
     }
 }
