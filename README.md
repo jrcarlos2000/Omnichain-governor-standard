@@ -58,6 +58,16 @@ Contract | Goerli | Mumbai
 [MultichainGovernorVotes](src/core/MultichainGovernorVotes.sol) | X | [link](https://mumbai.polygonscan.com/address/0xAb1cE3C12a85B7FA613DE482bfD3a731E7B8C28e)
 [MultichainGovernorVotesAdapter](src/core/MultichainGovernorVotesAdapter.sol) | [here](https://goerli.etherscan.io/address/0x66A70844A816066530eeC13B5C17C82d8df991D7) | X
 
+## **DEMO**
+
+Add Link
+## **PoC Live**
+
+Add Link
+
+## **Pitch Deck**
+
+Add Link
 ## **DeployScripts**
 ```bash
 // polygonMumbai
