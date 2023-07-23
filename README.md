@@ -49,6 +49,15 @@ Zetachain offers seamless integration for cross chain messaging, which enables u
 ### Chainlink
 
 Chainlink offers an alternative for integrating cross chain messaging : CCIP which enables us to implement our new standard. We used chainlink functions [here](https://github.com/jrcarlos2000/Omnichain-governor-standard/blob/62acfdef1630a337fe382cc937857bc513b1d73f/src/core/MultichainGovernorFunctionsConsumer.sol#L39)
+
+### Worldcoin
+
+IDKit for Identity Verification: IDKit is used for identity verification within FootyDAO (our PoC for omnichain governor standard) . As DAOs often require participants to comply with specific rules and regulations, verifying the identity of participants could be essential for ensuring fair and transparent operations. [here](https://github.com/technophile-04/DAOminichain/blob/b42404e89e12b2c60a65316afaada78ee1496bd3/packages/nextjs/pages/index.tsx#L84)
+
+### Push
+
+The PUSH protocol in FootyDAO (our PoC for omnichain governor standard) is used for real-time  communication , updates, match notifications etc, the code is [here](https://github.com/technophile-04/DAOminichain/blob/b42404e89e12b2c60a65316afaada78ee1496bd3/packages/nextjs/components/Footer.tsx#L37)
+
 ### Polygon
 
 We used polygon as our settlement layer due to the vast applications and protocols it has.
