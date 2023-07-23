@@ -2,6 +2,11 @@
  - lib/protocol-contracts/contracts/evm/interfaces/ZetaInteractorErrors.sol
  - lib/protocol-contracts/contracts/evm/interfaces/ZetaInterfaces.sol
  - lib/protocol-contracts/contracts/evm/tools/ZetaInteractor.sol
+## **Other Repos**
+
+Frontend  : https://github.com/technophile-04/DAOminichain
+
+Simple Server ( chainlink functions ) : https://github.com/technophile-04/chainlink-func-server
 
 # **Omnichain governor standard**
 
